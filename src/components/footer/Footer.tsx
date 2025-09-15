@@ -1,103 +1,87 @@
-import LogoFooter from "../../assets/images/logoFooter.png";
-import { Link } from "react-router-dom";
+import { IoIosArrowDown } from "react-icons/io";
+import Swal from "sweetalert2";
 
-import {
-  FaEnvelope,
-  FaInstagram,
-  FaTwitter,
-  FaFacebookF,
-  FaWhatsapp,
-} from "react-icons/fa";
+const Footer = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-export default function Footer() {
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: form.method,
+      body: formData,
+    })
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Pesan terkirim!",
+          text: "Terima kasih, kami akan segera menghubungi Anda.",
+          confirmButtonColor: "#3B82F6",
+        });
+        form.reset();
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Pesan gagal dikirim, silakan coba lagi.",
+          confirmButtonColor: "#EF4444",
+        });
+      });
+  };
+
   return (
-    <footer className="bg-black text-white rounded-3xl px-6 py-10 md:py-12 mt-48">
-      <section className="mb-5 py-12 px-4 md:px-16 ">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-          {/* FORM KONTAK */}
-          <form className="space-y-6">
-            <div>
-              <input
-                type="text"
-                placeholder="Nama Lengkap"
-                className="w-full border-b border-gray-400 focus:outline-none placeholder-gray-400 py-2 bg-transparent"
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                placeholder="Alamat"
-                className="w-full border-b border-gray-400 focus:outline-none placeholder-gray-400 py-2 bg-transparent"
-              />
-            </div>
-            <div>
-              <textarea
-                placeholder="Pesan"
-                rows={4}
-                className="w-full border-b border-gray-400 focus:outline-none placeholder-gray-400 py-2 bg-transparent resize-none"
-              ></textarea>
-            </div>
-            <div>
-              <button
-                type="submit"
-                className="bg-primary hover:bg-secondary text-white px-6 py-2 rounded-full shadow-md transition"
+    <footer className="bg-gray-900 text-gray-300 py-16 px-6 mt-20">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+        {/* Brand */}
+        <div>
+          <h2 className="text-2xl font-bold text-white mb-4">Vimedika</h2>
+          <p className="text-sm leading-relaxed">
+            Solusi digital modern untuk bisnis Anda. Kami hadir untuk membantu
+            mengembangkan usaha dengan teknologi terbaik.
+          </p>
+        </div>
+
+        {/* Quick Links */}
+        <div>
+          <h3 className="text-xl font-semibold text-white mb-4">Menu</h3>
+          <ul className="space-y-2">
+            <li>
+              <a href="/" className="hover:text-white transition-colors">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="/layanan" className="hover:text-white transition-colors">
+                Layanan
+              </a>
+            </li>
+            <li>
+              <a href="/tentang" className="hover:text-white transition-colors">
+                Tentang Kami
+              </a>
+            </li>
+            <li>
+              <a href="/faq" className="hover:text-white transition-colors">
+                FAQ
+              </a>
+            </li>
+            <li>
+              <a
+                href="/testimoni"
+                className="hover:text-white transition-colors"
               >
-                Submit
-              </button>
-            </div>
-          </form>
-
-          {/* KOTAK KONTAK KANAN */}
-          <div className="bg-primary rounded-2xl p-6 text-black shadow-lg relative">
-            <div className="bg-black text-white rounded-xl px-4 py-2 text-center font-semibold text-lg mb-4">
-              Kontak Kami
-            </div>
-            <ul className="space-y-4 mt-4 text-sm">
-              <li className="flex items-center gap-3">
-                <FaEnvelope /> Email
-              </li>
-              <li className="flex items-center gap-3">
-                <FaInstagram /> Instagram
-              </li>
-              <li className="flex items-center gap-3">
-                <FaTwitter /> Twitter
-              </li>
-              <li className="flex items-center gap-3">
-                <FaFacebookF /> Facebook
-              </li>
-              <li className="flex items-center gap-3">
-                <FaWhatsapp /> WhatsApp
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Fooer Bawah */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-sm md:text-base">
-        {/* Logo & Deskripsi */}
-        <div>
-          <img src={LogoFooter} alt="logo-footer" className="w-36 mb-4" />
-          <p className="text-white text-md">PT Visi Media Digital Komputama</p>
-        </div>
-
-        {/* Menu */}
-        <div>
-          <h3 className="font-semibold text-yellow-500 mb-2">Menu</h3>
-          <ul className="flex flex-col gap-2 text-gray-300 ">
-            <Link to={"/"}>Home</Link>
-            <Link to={"/layanan"}>Layanan</Link>
-            <Link to={"/tentang"}>Tentang Kami</Link>
-            <Link to={"/faq"}>FaQ</Link>
-            <Link to={"/testimoni"}>Testimoni</Link>
-            <Link to={"/kontak"}>Kontak</Link>
+                Testimoni
+              </a>
+            </li>
           </ul>
         </div>
 
-        {/* Layanan */}
+        {/* Services */}
         <div>
-          <h3 className="font-semibold text-yellow-500 mb-2">Layanan</h3>
-          <ul className="space-y-1 text-gray-300">
+          <h3 className="text-xl font-semibold text-white mb-4">Layanan</h3>
+          <ul className="space-y-2">
             <li>ViApotek</li>
             <li>ViRME</li>
             <li>ViHealth</li>
@@ -105,12 +89,125 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Kontak */}
+        {/* Contact Form */}
         <div>
-          <h3 className="font-semibold text-yellow-500 mb-2">Alamat</h3>
-          <p>Jl. Raya Gudo, No. 101A, Gudo - Jombang</p>
+          <h3 className="text-xl font-semibold text-white mb-4">
+            Hubungi Kami
+          </h3>
+          <form
+            id="contact-form"
+            className="space-y-4"
+            action="https://pesan.heruoktafian.com/api/send-email"
+            method="POST"
+            onSubmit={handleSubmit}
+          >
+            {/* Nama */}
+            <div>
+              <label
+                className="block text-white font-medium mb-2"
+                htmlFor="name"
+              >
+                Nama
+              </label>
+              <input
+                placeholder="Nama Anda"
+                required
+                className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 
+                  text-white placeholder-gray-400 focus:outline-none focus:border-primary"
+                type="text"
+                name="name"
+                id="name"
+              />
+            </div>
+
+            {/* Email */}
+            <div>
+              <label
+                className="block text-white font-medium mb-2"
+                htmlFor="email"
+              >
+                Email
+              </label>
+              <input
+                placeholder="email@anda.com"
+                required
+                className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 
+                  text-white placeholder-gray-400 focus:outline-none focus:border-primary"
+                type="email"
+                name="email"
+                id="email"
+              />
+            </div>
+
+            {/* Pilih Jenis Project */}
+            <div>
+              <label className="block text-white mb-1" htmlFor="project_type">
+                Pilih jenis project
+              </label>
+              <div className="relative">
+                <select
+                  className="w-full cursor-pointer px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 
+                    text-white focus:outline-none focus:border-primary appearance-none pr-10"
+                  name="project_type"
+                  id="project_type"
+                  required
+                  defaultValue=""
+                >
+                  <option value="" disabled>
+                    Pilih jenis project
+                  </option>
+                  <option value="web">ViApotek</option>
+                  <option value="mobile">ViRME</option>
+                  <option value="fullstack">ViHealth</option>
+                  <option value="uiux">ViHospital</option>
+                </select>
+                <IoIosArrowDown
+                  size={20}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+                />
+              </div>
+            </div>
+
+            {/* Pesan */}
+            <div>
+              <label
+                className="block text-white font-medium mb-2"
+                htmlFor="message"
+              >
+                Pesan
+              </label>
+              <textarea
+                rows={4}
+                required
+                className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 
+                  text-white placeholder-gray-400 focus:outline-none focus:border-primary"
+                name="message"
+                id="message"
+              />
+            </div>
+
+            {/* Tombol Submit */}
+            <div>
+              <button
+                type="submit"
+                className="w-full flex items-center justify-center gap-2 bg-primary text-white py-3 rounded-lg font-semibold 
+                  hover:bg-primary/90 transition-colors"
+              >
+                Kirim Pesan
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
+
+      {/* Bottom */}
+      <div className="mt-12 border-t border-gray-700 pt-6 flex flex-col md:flex-row items-center justify-between">
+        <p className="text-sm">
+          &copy; {new Date().getFullYear()} Vimedika. All rights reserved.
+        </p>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

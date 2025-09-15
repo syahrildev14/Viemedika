@@ -11,7 +11,7 @@ import LayananPage from "./pages/Layanan";
 import TentangPage from "./pages/Tentang";
 import FaqPage from "./pages/Faq";
 import TestimoniPage from "./pages/Testimoni";
-import KontakPage from "./pages/Kontak";
+
 
 // Komponen untuk auto-scroll ke atas saat berpindah halaman
 import ScrollToTop from "./components/ScrollToTop";
@@ -34,7 +34,6 @@ const App = () => {
           <Route path="/tentang" element={<TentangPage />} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/testimoni" element={<TestimoniPage />} />
-          <Route path="/kontak" element={<KontakPage />} />
         </Routes>
       </MainLayout>
     </Router>

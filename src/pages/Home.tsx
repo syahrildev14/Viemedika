@@ -310,10 +310,15 @@ const Home: React.FC = () => {
           </div>
 
           {/* Button */}
-          <div className="mt-8 flex justify-center md:justify-start lg:-translate-y-64">
-            <button className="py-4 px-6 sm:py-5 sm:px-8 bg-primary hover:bg-secondary duration-300 shadow-lg hover:shadow-none rounded-full font-semibold text-white text-base sm:text-md md:text-lg">
+          <div className="mt-8 flex justify-center md:justify-start lg:-translate-y-72">
+            <a
+              href="https://wa.me/6285182267460"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-4 px-6 sm:py-5 sm:px-8 bg-primary hover:bg-secondary duration-300 shadow-lg hover:shadow-none rounded-full font-semibold text-white text-base sm:text-md md:text-lg"
+            >
               Gabung Sekarang
-            </button>
+            </a>
           </div>
         </motion.section>
       </section>

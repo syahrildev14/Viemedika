@@ -2,13 +2,12 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Logo from "../../assets/images/Logo.png";
-import MyButton from "../button/Mybutton";
+
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const { pathname } = useLocation();
-  const [btnText] = useState("Konsultasi");
 
   const navLinks = [
     { to: "/", label: "Home" },
@@ -16,7 +15,6 @@ const Header = () => {
     { to: "/tentang", label: "Tentang Kami" },
     { to: "/faq", label: "FaQ" },
     { to: "/testimoni", label: "Testimoni" },
-    { to: "/kontak", label: "Kontak" },
   ];
 
   const linkClass = (path: string) =>
@@ -43,9 +41,16 @@ const Header = () => {
           ))}
         </nav>
 
-        {/* Konsultasi Button */}
+        {/* Konsultasi Button - Desktop */}
         <div className="hidden md:block">
-          <MyButton text={btnText} />
+          <a
+            href="https://wa.me/6285182267460"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-primary hover:bg-hoverBtn text-white font-semibold rounded-full py-3 px-6 transition-colors"
+          >
+            Konsultasi
+          </a>
         </div>
 
         {/* Mobile Menu Icon */}
@@ -87,12 +92,17 @@ const Header = () => {
                 {item.label}
               </Link>
             ))}
-            <button
+
+            {/* Tombol WhatsApp */}
+            <a
+              href="https://wa.me/6285182267460"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
-              className="mt-4 bg-primary hover:bg-hoverBtn text-white font-semibold rounded-xl py-2"
+              className="mt-4 text-center bg-primary hover:bg-hoverBtn text-white font-semibold rounded-xl py-2"
             >
               Konsultasi
-            </button>
+            </a>
           </nav>
         </div>
       )}
